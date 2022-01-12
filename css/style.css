@@ -6,12 +6,31 @@ body {
   color: #ffffff;
 }
 
+body a {
+  color: #ffffff;
+}
+
+.btn {
+  color: #7f8063;
+  padding: 0px 30px;
+  font-size: 40px;
+  border-radius: 25px;
+  background: #FCDB0F;
+  -webkit-box-shadow: 9px 9px 21px #F08E2E, -9px -9px 21px #fffc11;
+          box-shadow: 9px 9px 21px #F08E2E, -9px -9px 21px #fffc11;
+}
+
+.btn:hover {
+  -webkit-transform: translateY(1px);
+          transform: translateY(1px);
+}
+
 .wrapper {
   height: 100%;
 }
 
 .page {
-  min-height: 100%;
+  height: 100vh;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[2];
@@ -20,14 +39,162 @@ body {
 
 .page-user {
   border: 1px solid #e40a0a;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr 0.5fr 2.5fr;
+      grid-template-rows: 1fr 0.5fr 2.5fr;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.page-user__userchange {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.page-user__useravatar {
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
+}
+
+.page-user__username {
+  font-size: 40px;
+}
+
+.page-user__userhistory {
+  -ms-flex-item-align: start;
+      -ms-grid-row-align: start;
+      align-self: start;
+}
+
+.user-history {
+  display: -ms-grid;
+  display: grid;
+  border: 2px solid #FCDB0F;
+  border-radius: 20px;
+  -webkit-box-shadow: 9px 9px 21px #F08E2E, -9px -9px 21px #fffc11;
+          box-shadow: 9px 9px 21px #F08E2E, -9px -9px 21px #fffc11;
+}
+
+.user-history__title {
+  font-family: "Road Rage";
+  font-size: 60px;
+  line-height: 1;
+  text-align: center;
+}
+
+.user-history__border {
+  border-top: 2px solid #FCDB0F;
+  padding: 15px 25px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.user-history__border::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+.user-history__border {
+  overflow: -moz-scrollbars-none;
+}
+
+.user-history__border {
+  -ms-overflow-style: none;
+}
+
+.user-history__row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-bottom: 1px solid #fffc11;
+  margin: 0px 0px 10px 0px;
+}
+
+.user-history__row div:not(:last-child) {
+  margin: 0px 60px 0px 0px;
 }
 
 .page-beer {
   border: 1px solid #0a19e4;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.page-beer__card {
+  -ms-flex-item-align: start;
+      -ms-grid-row-align: start;
+      align-self: start;
+}
+
+@-webkit-keyframes beerimg {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(40deg);
+            transform: rotate(40deg);
+  }
+}
+
+@keyframes beerimg {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(40deg);
+            transform: rotate(40deg);
+  }
 }
 
 .icon-user-circle {
-  color: #F7B431;
+  color: #FCDB0F;
+  font-size: 150px;
+}
+
+.card-beer {
+  text-align: center;
+}
+
+.card-beer__name {
+  font-family: "Road Rage";
+  font-size: 80px;
+  line-height: 1;
+}
+
+.card-beer__brand {
+  font-family: "Road Rage";
   font-size: 50px;
+  line-height: 1;
+  margin: 0px 0px 20px 0px;
+}
+
+.card-beer__style {
+  font-size: 30px;
+}
+
+.card-beer__hop {
+  font-size: 30px;
+}
+
+.card-beer__malts {
+  font-size: 20px;
+}
+
+.card-beer__alcohol {
+  font-size: 18px;
 }
 /*# sourceMappingURL=style.css.map */
