@@ -1,0 +1,36 @@
+@import url('/css/zeroing.css');
+//для наименования пива
+@import url(https://fonts.googleapis.com/css?family=Road+Rage:regular&display=swap&subset=cyrillic-ext);
+
+body {
+    font-family: "PT Sans", sans-serif;
+    background-color: #292828;
+    color: #ffffff;
+}
+//Переменные=======================================================
+$minWidth: 320px;
+$maxWidth: 1920;
+$maxWidthContainer: 1100;
+$bp1: $maxWidthContainer + 12;
+$bp2: 991.98;
+$bp3: 767.98;
+$bp4: 479.98;
+//=================================================================
+.wrapper {
+    height: 100%;
+}
+.page {
+    min-height: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.page-user {
+    border: 1px solid #e40a0a;
+}
+.page-beer {
+    border: 1px solid #0a19e4;
+}
+.icon-user-circle {
+    color: #F7B431;
+    font-size: 50px;
+}
