@@ -24,9 +24,12 @@ $bp4: 479.98;
     font-size: calc(30px + (40 - 30) * ((100vw - 320px) / (1600 - 320)));
     border-radius: 25px;
     background: #FCDB0F;
-    box-shadow:  9px 9px 21px #F08E2E,
-                 -9px -9px 21px #fffc11;
+    transition: box-shadow .8s ease-in-out 0s;
     &:hover{
+        box-shadow:  9px 9px 21px #F08E2E,
+                 -9px -9px 21px #fffc11;
+    }
+    &:active{
         transform: translateY(1px);
     }
 }
@@ -95,8 +98,11 @@ $bp4: 479.98;
     grid-template-rows: auto 1fr;
     border: 2px solid #FCDB0F;
     border-radius: 20px;
-    box-shadow:  9px 9px 21px #F08E2E,
+    transition: box-shadow .8s ease-in-out 0s;
+    &:hover {
+        box-shadow:  9px 9px 21px #F08E2E,
                  -9px -9px 21px #fffc11;
+    }
     &__title {
         font-family: "Road Rage";
         font-size: 60px;
