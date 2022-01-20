@@ -11,8 +11,11 @@ const beerDataMalts = document.querySelector('.card-beer__malts');
 const beerDataAlcohol = document.querySelector('.card-beer__alcohol');
 const beerDataIbu = document.querySelector('.card-beer__ibu');
 
+const beerDataHistory = document.querySelector('.user-history__border');
+
 let tempBeer = {};
 let historyBeer = [];
+let clone;
 
 const url1 = 'https://random-data-api.com/api/users/random_user';
 const url2 = 'https://random-data-api.com/api/beer/random_beer';
@@ -47,7 +50,6 @@ function clickSpin() {
                             break;
                     }
                 }
-                setTimeout
                 beerDataName.innerHTML = `${tempBeer.name}`;
                 beerDataBrand.innerHTML = `${tempBeer.brand}`;
                 beerDataStyle.innerHTML = `${tempBeer.style}`;
@@ -55,6 +57,8 @@ function clickSpin() {
                 beerDataMalts.innerHTML = `${tempBeer.malts}`;
                 beerDataAlcohol.innerHTML = `${tempBeer.alcohol}`;
                 beerDataIbu.innerHTML = `${tempBeer.ibu}`;
+                clone = Object.assign({}, tempBeer);
+
             })
             .catch(function (error) {
                 alert(error);
@@ -62,12 +66,21 @@ function clickSpin() {
     }, 1000);
 }
 function clickAccept() {
-    let clone = Object.assign({}, tempBeer);
-    //нужна проверка на равенство такого же объекта (2 x Accept)
-    // if (clone == historyBeer[historyBeer.length - 1]) break;
-    historyBeer.push(clone);
-    console.log(historyBeer);
-    console.log(clone);
+    if (clone === historyBeer[historyBeer.length - 1]) {
+        alert('Уже выпито!');
+    } else {
+        historyBeer.push(clone);
+        console.log(historyBeer);
+        beerDataHistory.innerHTML = `
+        <div class="user-history__row">
+            <div class="beer__brand">${historyBeer[historyBeer.length - 1].brand}</div>
+            <div class="beer__name">${historyBeer[historyBeer.length - 1].name}</div>
+            <div class="beer__ibu">${historyBeer[historyBeer.length - 1].ibu}</div>
+            <div class="beer__alcohol">${historyBeer[historyBeer.length - 1].alcohol}</div>
+        </div>
+        ${beerDataHistory.innerHTML}
+        `
+    }
 }
 
 userChange.onclick = changeUser;
