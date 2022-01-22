@@ -9,10 +9,10 @@ body {
     a{color: #ffffff;}
 }
 //Переменные=======================================================
-$minWidth: 320px;
-$maxWidth: 1920;
-$maxWidthContainer: 1100;
-$bp1: $maxWidthContainer + 12;
+// $minWidth: 320px;
+// $maxWidth: 1920;
+// $maxWidthContainer: 1100;
+// $bp1: $maxWidthContainer + 12;
 $bp2: 991.98;
 $bp3: 767.98;
 $bp4: 479.98;
@@ -20,11 +20,10 @@ $bp4: 479.98;
 .btn {
     color: #292828;
     padding: 0px 30px;
-    // font-size: 40px;
     font-size: calc(30px + (40 - 30) * ((100vw - 320px) / (1600 - 320)));
     border-radius: 10px;
     background: #FCDB0F;
-    transition: box-shadow .8s ease-in-out 0s;
+    transition: box-shadow .8s ease-in 0s;
     &:hover{
         box-shadow:  9px 9px 21px #F08E2E,
                  -9px -9px 21px #fffc11;
@@ -33,7 +32,11 @@ $bp4: 479.98;
         transform: translateY(1px);
     }
 }
-
+.icon-user-circle {
+    color: #FCDB0F;
+    font-size: calc(40px + (150 - 40) * ((100vw - 320px) / (1600 - 320)));
+}
+//=================================================================
 .wrapper {
     height: 100vh;
 }
@@ -47,7 +50,6 @@ $bp4: 479.98;
     }
 }
 .page-user {
-    border: 1px solid #e40a0a;
     display: grid;
     height: inherit;
     grid-template-rows: 0.6fr minmax(150px, 1fr);
@@ -61,7 +63,7 @@ $bp4: 479.98;
     &__box {
     }
     &__history {
-        margin: 15px 0px 20px 0px;
+        margin: 15px 0px 5px 0px;
     }
 }
 .box-user {
@@ -78,12 +80,18 @@ $bp4: 479.98;
     &__userchange {
         position: absolute;
         top: 0;
-        right: 0;
+        right: 100%;
+        transform: translateX(100%);
+        a{color: rgba(252, 219, 15, .5);}
+        a:hover{color: rgba(252, 219, 15, 1);}
+        @media (max-width:$bp2+px){
+            right: 0;
+            transform: translateX(0);
+        }
     }
     &__useravatar {
     }
     &__username {
-        // font-size: 2.5rem;
         font-size: calc(25px + (40 - 25) * ((100vw - 320px) / (1600 - 320)));
         @media (max-width:$bp2+px){
             margin-left: calc(20px + (40 - 20) * ((100vw - 320px) / (1600 - 320)));
@@ -98,9 +106,7 @@ $bp4: 479.98;
     grid-template-rows: auto 1fr;
     border: 2px solid #FCDB0F;
     border-radius: 20px;
-    //этими 2мя ниже можно санимировать
-    // align-self: start;
-    width: 100%;
+    align-self: flex-start;
     transition: box-shadow .8s ease-in-out 0s;
     &:hover {
         box-shadow:  9px 9px 21px #F08E2E,
@@ -142,21 +148,29 @@ $bp4: 479.98;
 }
 
 .page-beer {
-    border: 1px solid #0a19e4;
+    height: inherit;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 40% 52% 8%;
-    padding: 30px;
+    grid-template-rows: 1.4fr 1.4fr 0.2fr;
+    padding: 15px;
+    row-gap: 15px;
+    overflow: hidden;
+    @media (max-width:$bp2+px){
+        grid-template-rows: 1.5fr .5fr;
+        height: 100%;
+    }
+    @media (max-width:$bp3+px){
+        row-gap: 5px;
+    }
     &__img {
         grid-column: span 2;
-        animation: shake 5s ease-out infinite 0s forwards;
-        // animation: attense 4.3s ease-in-out infinite alternate 0s forwards;
-        // animation: showbeer .9s ease-in-out 0s forwards;
-
-        
-
         position: relative;
-        padding: 0px 0px 50% 0px;
+        @media (max-width:$bp2+px){
+            grid-column: auto;
+        }
+        @media (max-width:$bp3+px){
+            grid-column: span 2;
+        }
         img {
             position: absolute;
             top: 0;
@@ -170,6 +184,13 @@ $bp4: 479.98;
     &__card {
         grid-column: span 2;
         align-self: start;
+        @media (max-width:$bp2+px){
+            grid-column: auto;
+            align-self: center;
+        }
+        @media (max-width:$bp3+px){
+            grid-column: span 2;
+        }
     }
 
     &__btns {
@@ -179,49 +200,11 @@ $bp4: 479.98;
     }
 }
 
-@keyframes attense {
-    0%{
-        transform: scale(.5);
-        opacity: 1;
-    }
-    25%{
-        transform: scale(.5);
-        opacity: 1;
-    }
-    50%{
-        transform: scale(1);
-        opacity: 1;
-    }
-    75%{
-        transform: scale(.5);
-        opacity: 1;
-    }
-    100%{
-        transform: scale(1.5);
-        opacity: 0;
-    }
-}
-@keyframes showbeer {
-    0%{
-        transform: scale(.1);
-        opacity: 0;
-    }
-    100%{
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-.icon-user-circle {
-    color: #FCDB0F;
-    font-size: calc(40px + (150 - 40) * ((100vw - 320px) / (1600 - 320)));
-}
-
 .card-beer {
     text-align: center;
     &__name {
         font-family: "Road Rage";
-        font-size: 80px;
+        font-size: calc(40px + (80 - 40) * ((100vw - 320px) / (1600 - 320)));
         line-height: 1;
     }
     &__brand {
@@ -229,6 +212,9 @@ $bp4: 479.98;
         font-size: 50px;
         line-height: 1;
         margin: 0px 0px 20px 0px;
+        @media (max-width:$bp2+px){
+            margin: 0;
+        }
     }
     &__style {
         font-size: 30px;
@@ -246,30 +232,33 @@ $bp4: 479.98;
     }
 }
 //=================================================================
-@keyframes shake {    
-    0%{
-        transform: translate(0, 0) rotate(0) scale(.9);
-    }
+.showinghistory{
+    align-self: stretch;
+    width: 100%;
+}
+.shaking {animation: shake 2.5s ease-in forwards;}
+.showingbeer{animation: showbeer 1s ease-in-out forwards;}
+@keyframes shake {
     2% {
-        transform: translate(10px, -5px) rotate(-0.5deg) scale(.9);
+        transform: translate(10px, -5px) rotate(-0.5deg);
     }
     4% {
-    transform: translate(4px, 1px) rotate(0.5deg) scale(.9);
+    transform: translate(4px, 1px) rotate(0.5deg);
     }
     6% {
-    transform: translate(10px, 9px) rotate(2.5deg) scale(.9);
+    transform: translate(10px, 9px) rotate(2.5deg);
     }
     8% {
-    transform: translate(7px, 7px) rotate(3.5deg) scale(.9);
+    transform: translate(7px, 7px) rotate(3.5deg);
     }
     10% {
-    transform: translate(10px, 0px) rotate(0.5deg) scale(.9);
+    transform: translate(10px, 0px) rotate(0.5deg);
     }
     12% {
-    transform: translate(-3px, -4px) rotate(0.5deg) scale(.9);
+    transform: translate(-3px, -4px) rotate(0.5deg);
     }
     14% {
-    transform: translate(-4px, -2px) rotate(-0.5deg) scale(.9);
+    transform: translate(-4px, -2px) rotate(-0.5deg);
     }
     16% {
     transform: translate(8px, 7px) rotate(3.5deg);
@@ -290,10 +279,10 @@ $bp4: 479.98;
     transform: translate(-1px, 10px) rotate(2.5deg);
     }
     28% {
-    transform: translate(10px, -1px) rotate(3.5deg) scale(1);
+    transform: translate(10px, -1px) rotate(3.5deg);
     }
     30% {
-    transform: translate(-8px, -2px) rotate(2.5deg) scale(1);
+    transform: translate(-8px, -2px) rotate(2.5deg);
     }
     32% {
     transform: translate(7px, 0px) rotate(3.5deg);
@@ -323,7 +312,7 @@ $bp4: 479.98;
     transform: translate(6px, 6px) rotate(-2.5deg);
     }
     50% {
-    transform: translate(-3px, 9px) rotate(-0.5deg) scale(1);
+    transform: translate(-3px, 9px) rotate(-0.5deg);
     }
     52% {
     transform: translate(7px, -3px) rotate(1.5deg);
@@ -335,7 +324,7 @@ $bp4: 479.98;
     transform: translate(3px, -7px) rotate(0.5deg);
     }
     58% {
-    transform: translate(2px, -3px) rotate(-2.5deg) scale(.9);
+    transform: translate(2px, -3px) rotate(-2.5deg);
     }
     60% {
     transform: translate(5px, 2px) rotate(-2.5deg);
@@ -362,7 +351,7 @@ $bp4: 479.98;
     transform: translate(-4px, -2px) rotate(-2.5deg);
     }
     76% {
-    transform: translate(-8px, -2px) rotate(1.5deg) scale(1);
+    transform: translate(-8px, -2px) rotate(1.5deg);
     }
     78% {
     transform: translate(2px, -5px) rotate(0.5deg);
@@ -395,9 +384,19 @@ $bp4: 479.98;
     transform: translate(-8px, 6px) rotate(-2.5deg);
     }
     98% {
-    transform: translate(10px, 9px) rotate(1.5deg) scale(1.3);
+    transform: translate(10px, 9px) rotate(1.5deg);
     }
-    100% {
-    transform: translate(0, 0) rotate(0) scale(1.3);
+    0%,100% {
+    transform: translate(0, 0) rotate(0);
+    }
+}
+@keyframes showbeer {
+    0%{
+        transform: scale(.1);
+        opacity: 0;
+    }
+    100%{
+        transform: scale(1);
+        opacity: 1;
     }
 }

@@ -1,7 +1,6 @@
 "use strict"
 
 const userDataName = document.querySelector('.box-user__username');
-// const userDataAvatar = document.querySelector('.box-user__useravatar');
 
 const beerDataName = document.querySelector('.card-beer__name');
 const beerDataBrand = document.querySelector('.card-beer__brand');
@@ -12,6 +11,8 @@ const beerDataAlcohol = document.querySelector('.card-beer__alcohol');
 const beerDataIbu = document.querySelector('.card-beer__ibu');
 
 const beerDataHistory = document.querySelector('.user-history__border');
+const beerImage = document.querySelector('.page-beer__img').firstElementChild;
+const borderHistory = document.querySelector('.user-history');
 
 let tempBeer = {};
 let historyBeer = [];
@@ -25,13 +26,13 @@ function changeUser() {
         .then((resp) => resp.json())
         .then(users => {
             userDataName.innerHTML = `${users.username}`;
-            // userDataAvatar.innerHTML = `${users.avatar}`;
         })
         .catch(function (error) {
             alert(error);
         });
 }
 function clickSpin() {
+    beerImage.classList.add('shaking');
     setTimeout(() => {
         fetch(url2)
             .then((resp) => resp.json())
@@ -63,7 +64,12 @@ function clickSpin() {
             .catch(function (error) {
                 alert(error);
             });
-    }, 1000);
+        beerImage.classList.remove('shaking');
+        beerImage.classList.add('showingbeer');
+        beerImage.setAttribute('src', '/img/beerspin-c.png');
+    }, 2500);
+    beerImage.setAttribute('src', '/img/barrel.png');
+    beerImage.classList.remove('showingbeer');
 }
 function clickAccept() {
     if (clone === historyBeer[historyBeer.length - 1]) {
@@ -81,18 +87,14 @@ function clickAccept() {
         ${beerDataHistory.innerHTML}
         `
     }
+    if (historyBeer.length > 0) {
+        borderHistory.classList.add('showinghistory');
+    } else {
+        borderHistory.classList.remove('showinghistory');
+    }
+
 }
 
 userChange.onclick = changeUser;
 spin.onclick = clickSpin;
 accept.onclick = clickAccept;
-
-// let keys = ['a', 'b', 'c', 'd', 'e'];
-// let values = [1, 2, 3, 4, 5];
-// let obj = {};
-
-// for (let i = 0; i <= 4; i++) {
-//     obj[keys[i]] = values[i];
-// }
-
-// console.log(obj);
