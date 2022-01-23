@@ -10,9 +10,12 @@ const beerDataMalts = document.querySelector('.card-beer__malts');
 const beerDataAlcohol = document.querySelector('.card-beer__alcohol');
 const beerDataIbu = document.querySelector('.card-beer__ibu');
 
-const beerDataHistory = document.querySelector('.user-history__border');
+const beerDataHistory = document.querySelectorAll('.user-history__border');
 const beerImage = document.querySelector('.page-beer__img').firstElementChild;
 const borderHistory = document.querySelector('.user-history');
+
+const cleanHistoryToggle = document.querySelectorAll('.cleanhistory');
+const cleanHistoryTog = document.querySelector('.cleanhistory');
 
 let tempBeer = {};
 let historyBeer = [];
@@ -76,25 +79,48 @@ function clickAccept() {
         alert('Уже выпито!');
     } else {
         historyBeer.push(clone);
-        console.log(historyBeer);
-        beerDataHistory.innerHTML = `
-        <div class="user-history__row">
-            <div class="beer__brand">${historyBeer[historyBeer.length - 1].brand}</div>
-            <div class="beer__name">${historyBeer[historyBeer.length - 1].name}</div>
-            <div class="beer__ibu">${historyBeer[historyBeer.length - 1].ibu}</div>
-            <div class="beer__alcohol">${historyBeer[historyBeer.length - 1].alcohol}</div>
-        </div>
-        ${beerDataHistory.innerHTML}
-        `
+        for (let inner of beerDataHistory) {
+            inner.innerHTML = `
+            <div class="user-history__row">
+                <div class="beer__brand">${historyBeer[historyBeer.length - 1].brand}</div>
+                <div class="beer__name">${historyBeer[historyBeer.length - 1].name}</div>
+                <div class="beer__ibu">${historyBeer[historyBeer.length - 1].ibu}</div>
+                <div class="beer__alcohol">${historyBeer[historyBeer.length - 1].alcohol}</div>
+            </div>
+            ${inner.innerHTML}
+            `;
+        };
     }
     if (historyBeer.length > 0) {
         borderHistory.classList.add('showinghistory');
+        cleanHistoryTog.classList.add('showclean');
     } else {
         borderHistory.classList.remove('showinghistory');
+        cleanHistoryTog.classList.remove('showclean');
     }
-
 }
 
 userChange.onclick = changeUser;
 spin.onclick = clickSpin;
 accept.onclick = clickAccept;
+
+//delete historyBeer=======================================================================
+for (let v of cleanHistoryToggle) {
+    v.addEventListener("click", function (e) {
+        if (historyBeer) {
+            historyBeer = [];
+            for (let inner of beerDataHistory) {
+                inner.innerHTML = '';
+            };
+        }
+    });
+};
+
+//for .showhistory=======================================================================
+const mobileHistory = document.querySelector('.box-user__showhistory');
+if (mobileHistory) {
+    const mobileBodyHistory = document.querySelector('.page-user__showmobile');
+    mobileHistory.addEventListener("click", function (e) {
+        mobileBodyHistory.classList.toggle('active');
+    });
+}
